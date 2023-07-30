@@ -13,3 +13,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 --nvim-tree
 vim.keymap.set("n", "<leader>fe", ":NvimTreeToggle<CR>")
+
+--visual mode end of line
+vim.keymap.set("v", "j", "j$")
+vim.keymap.set("v", "k", "k$")
