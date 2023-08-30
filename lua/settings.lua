@@ -1,4 +1,6 @@
-vim.opt.rnu = true
+--hybrid line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.opt.tabstop=4
 vim.opt.softtabstop=4
@@ -17,3 +19,10 @@ vim.opt.scrolloff=8
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+--folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+--clipboard
+-- Set clipboard option to include unnamedplus
+vim.api.nvim_set_option('clipboard', 'unnamedplus')

@@ -7,7 +7,13 @@ end)
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
+-- rust tools requires this step
 lsp.skip_server_setup({"rust-analyzer"})
+
+--java language server
+
+lsp.skip_server_setup({"jdtls"})
+
 lsp.setup()
 
 local cmp = require('cmp')
@@ -17,8 +23,8 @@ cmp.setup({
   mapping = {
     -- `Enter` key to confirm completion
     ['<CR>'] = cmp.mapping.confirm({select = false}),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
 
 
     -- Ctrl+Space to trigger completion menu
@@ -29,3 +35,4 @@ cmp.setup({
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
   }
 })
+
