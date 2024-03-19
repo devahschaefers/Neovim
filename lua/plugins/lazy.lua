@@ -15,6 +15,7 @@ plugins = {
     
     {
         "nvim-treesitter/nvim-treesitter",
+        -- commit = "f2778bd",
         build = ":TSUpdate",
     },
 
@@ -71,19 +72,25 @@ plugins = {
     },
 
     {'neovim/nvim-lspconfig' },
-        { 'simrat39/rust-tools.nvim' },
 
-        -- Debugging
-        {'nvim-lua/plenary.nvim' },
-        { 'mfussenegger/nvim-dap' },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+    },
+
+
+    -- Debugging
+    {'nvim-lua/plenary.nvim' },
+    { 'mfussenegger/nvim-dap' },
 
 
     {'akinsho/toggleterm.nvim', version = "*", config = true},
     
     { 
-        "lukas-reineke/indent-blankline.nvim",
-        lazy = false
+        "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} 
     },
+
     {
         'Mofiqul/dracula.nvim',
     },
@@ -107,6 +114,15 @@ plugins = {
     },
     {
         'tpope/vim-sleuth',
+    },
+    {
+        "mfussenegger/nvim-jdtls"
+    },
+    {
+        'christoomey/vim-tmux-navigator'
+    },
+    {
+        'coddingtonbear/neomake-platformio',
     },
 }
 

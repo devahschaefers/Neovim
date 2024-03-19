@@ -11,7 +11,6 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.skip_server_setup({"rust-analyzer"})
 
 --java language server
-
 lsp.skip_server_setup({"jdtls"})
 
 lsp.setup()
