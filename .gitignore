@@ -1,0 +1,15 @@
+# Swap and backup files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Undo files
+*.un~
+
+# Session files
+Session.vim
+
+# OS-specific
+.DS_Store
+Thumbs.db
