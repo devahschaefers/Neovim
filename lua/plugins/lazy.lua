@@ -15,7 +15,6 @@ plugins = {
     
     {
         "nvim-treesitter/nvim-treesitter",
-        -- commit = "f2778bd",
         build = ":TSUpdate",
     },
 
@@ -42,7 +41,7 @@ plugins = {
     },
 
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        'nvim-telescope/telescope.nvim', --tag = '0.1.2',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
@@ -83,6 +82,10 @@ plugins = {
     -- Debugging
     {'nvim-lua/plenary.nvim' },
     { 'mfussenegger/nvim-dap' },
+
+    { "folke/neodev.nvim", opts = {} },
+    { "nvim-neotest/nvim-nio" },
+    { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
 
 
     {'akinsho/toggleterm.nvim', version = "*", config = true},

@@ -10,9 +10,6 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 -- rust tools requires this step
 lsp.skip_server_setup({"rust-analyzer"})
 
---java language server
-lsp.skip_server_setup({"jdtls"})
-
 lsp.setup()
 
 local cmp = require('cmp')
@@ -34,4 +31,11 @@ cmp.setup({
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
   }
 })
+
+
+
+-- shorthands
+vim.api.nvim_create_user_command("Rename", function()
+  vim.lsp.buf.rename()
+end, {})
 

@@ -22,7 +22,8 @@ vim.g.loaded_netrw = 1
 --folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevelstart = 99
 
 --clipboard
 -- Set clipboard option to include unnamedplus
-vim.api.nvim_set_option('clipboard', 'unnamedplus')
+vim.opt.clipboard = "unnamedplus"
