@@ -34,5 +34,5 @@ vim.diagnostic.config({
         show = true,
     },
     signs = true, -- might break?
-    underline = true, 
+    underline = true,
 })
