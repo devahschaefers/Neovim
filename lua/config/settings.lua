@@ -33,6 +33,6 @@ vim.diagnostic.config({
     virtual_text = {
         show = true,
     },
-    signs = true, -- might break?
+    signs = true,
     underline = true, 
 })
