@@ -1,7 +1,35 @@
 -- find better name for this file
 
 return {
+    -- LSP
     {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            automatic_enable = {
+                exclude = {
+                    "rust_analyzer",
+                }
+            }
+        },
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
+    },
+
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+    },
+
+    -- autocompletions (for now)
+    {'hrsh7th/nvim-cmp'},     -- Required
+    {'hrsh7th/cmp-nvim-lsp'}, -- Required
+    {'L3MON4D3/LuaSnip'},     -- Required
+
+
+    { -- TODO: add a vsplit and hsplit option for these (might be in keymaps)
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         opts = {
@@ -23,35 +51,7 @@ return {
         }
     },
 
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        dependencies = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
-            {                                      -- Optional
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},     -- Required
-            {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
-        },
-    },
-
-    {'neovim/nvim-lspconfig' },
-
-    {
-        'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
-        ft = { 'rust' },
-    },
-
+    
     -- Debugging
     {'nvim-lua/plenary.nvim' },
     { 'mfussenegger/nvim-dap' },

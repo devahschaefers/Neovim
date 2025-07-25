@@ -39,7 +39,7 @@ return {
         version = "*",
         config = function ()
             require("toggleterm").setup()
-            vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>ToggleTerm direction=float<CR>', { noremap = true, silent = true })
+            vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>ToggleTerm direction=float<CR>', { noremap = true, silent = true }) -- TODO: this overrides the switching panes hotkey
         end,
     },
 

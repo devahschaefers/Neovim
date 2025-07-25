@@ -30,9 +30,8 @@ vim.opt.clipboard = "unnamedplus"
 
 --diagnostics
 vim.diagnostic.config({
-    virtual_text = {
-        show = true,
-    },
+    virtual_lines = true, -- give errors as lines below
+    -- virtual_text = true, -- give errors as inlined on the line with the error
     signs = true,
     underline = true,
 })
