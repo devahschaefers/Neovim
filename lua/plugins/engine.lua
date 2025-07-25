@@ -24,9 +24,47 @@ return {
     },
 
     -- autocompletions (for now)
-    {'hrsh7th/nvim-cmp'},     -- Required
-    {'hrsh7th/cmp-nvim-lsp'}, -- Required
-    {'L3MON4D3/LuaSnip'},     -- Required
+    {
+        "saghen/blink.cmp",
+        version = "1.*", -- stable, pre-built binary
+        event = "InsertEnter",
+        dependencies = {
+            "L3MON4D3/LuaSnip",            -- snippet engine
+            "rafamadriz/friendly-snippets" -- large collection of ready-to-use snippets
+        },
+        opts = {
+            -- Custom keymap: Enter to accept, Up/Down to select, C-Space to trigger, C-f/C-b for snippet jump
+            keymap = {
+                ["<CR>"]      = { "accept" },
+                ["<Up>"]      = { "select_prev", "fallback" },
+                ["<Down>"]    = { "select_next", "fallback" },
+                ["<C-Space>"] = { "complete" },
+                ["<C-f>"]     = { "snippet_forward", "fallback" },
+                ["<C-b>"]     = { "snippet_backward", "fallback" },
+            },
+
+            appearance = {
+                nerd_font_variant = "mono", -- for best icon alignment with Nerd Font Mono
+            },
+
+            -- Always show documentation for the currently selected completion item
+            completion = {
+                documentation = { auto_show = true }
+            },
+
+            -- Extendable sources: add more in another config file with opts_extend
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+
+            -- Use the Rust fuzzy matcher if available, fallback to Lua with a warning
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+        },
+
+        -- This allows you to extend the default sources elsewhere in your config:
+        -- Example: require("blink.cmp").setup({ sources = { default = { "emoji" } } })
+        opts_extend = { "sources.default" },
+    },
 
 
     { -- TODO: add a vsplit and hsplit option for these (might be in keymaps)
@@ -51,7 +89,6 @@ return {
         }
     },
 
-    
     -- Debugging
     {'nvim-lua/plenary.nvim' },
     { 'mfussenegger/nvim-dap' },
