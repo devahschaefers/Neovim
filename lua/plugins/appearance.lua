@@ -1,8 +1,7 @@
 -- should prolly move this somewhere else
 function setColors(color)
-    color = color or "dracula-soft"
+    color = color
     vim.cmd.colorscheme(color)
-
     vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
     vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
 end
@@ -51,16 +50,108 @@ return {
             },
         },
         opts = {
-            options = { icons_enabled = true }
+            options = {
+                icons_enabled = true,
+                theme = "catppuccin",
+            }
         }
     },
     {
         "RRethy/vim-illuminate"
     },
+
     {
         'Mofiqul/dracula.nvim',
-        config = function ()
-            setColors()
+        opts = {
+            transparent_bg = true,
+        },
+        -- config = function (_, opts)
+        --     require("dracula").setup(opts)
+        --     vim.cmd.colorscheme("dracula-soft")
+        -- end
+    },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+            transparent_background = true,
+            integrations = {
+                -- see https://github.com/catppuccin/nvim#integrations (SO MANY MORE) TODO
+                treesitter = true,
+                nvimtree = true,
+                blink_cmp = true,
+                dap_ui = true,
+                -- need to look into this more
+                indent_blankline = {
+                    enabled = true,
+                    scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+                    colored_indent_levels = true,
+                },
+            },
+            color_overrides = {
+                mocha = {
+                    -- Punch up the background and accents for more contrast
+                    base    = "#181825",
+                    mantle  = "#161622",
+                    crust   = "#11111b",
+                    surface0 = "#313244",
+                    surface1 = "#45475a",
+                    text    = "#ffffff",
+                    subtext1 = "#bac2de",
+                    overlay1 = "#7f849c",
+                    -- Vibrant, punchy accents
+                    mauve   = "#cba6f7",
+                    blue    = "#89b4fa",
+                    peach   = "#fab387",
+                    yellow  = "#f9e2af",
+                    red     = "#f38ba8",
+                    green   = "#a6e3a1",
+                    teal    = "#94e2d5",
+                    flamingo = "#f2cdcd",
+                },
+            },
+            custom_highlights = function(colors)
+                return {
+                    -- Comments: subtle but readable
+                    Comment = { fg = colors.overlay1, style = { "italic" } },
+                    -- Keywords: punchy purple
+                    ["@keyword"] = { fg = colors.mauve, style = { "bold" } },
+                    -- Functions: vibrant blue
+                    ["@function"] = { fg = colors.blue, style = { "bold" } },
+                    -- Types/classes: warm yellow
+                    ["@type"] = { fg = colors.yellow, style = { "bold" } },
+                    ["@class"] = { fg = colors.yellow, style = { "bold" } },
+                    -- Variables: light white 
+                    ["@variable"] = { fg = colors.text },
+                    -- Constants/numbers: peach
+                    ["@constant"] = { fg = colors.peach },
+                    ["@number"] = { fg = colors.peach },
+                    -- Strings: bright green
+                    ["@string"] = { fg = colors.green },
+                    -- Properties/attributes: peach
+                    ["@property"] = { fg = colors.peach },
+                    -- Regex/special: teal
+                    ["@string.regex"] = { fg = colors.teal },
+                    -- Comments/doc: overlay1
+                    ["@comment.documentation"] = { fg = colors.overlay1, style = { "italic" } },
+                    -- UI tweaks for punchier look
+                    LineNr = { fg = colors.overlay1 },
+                    CursorLineNr = { fg = colors.yellow, style = { "bold" } },
+                    Visual = { bg = colors.surface1 },
+                    Pmenu = { bg = colors.mantle },
+                    PmenuSel = { bg = colors.surface0, fg = colors.text },
+                    -- Diagnostic colors
+                    DiagnosticError = { fg = colors.red },
+                    DiagnosticWarn = { fg = colors.peach },
+                    DiagnosticInfo = { fg = colors.blue },
+                    DiagnosticHint = { fg = colors.teal },
+                }
+            end,
+        },
+        config = function (_, opts)
+            require("catppuccin").setup(opts)
+            vim.cmd.colorscheme("catppuccin")
         end
     },
 }

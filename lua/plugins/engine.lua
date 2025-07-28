@@ -27,7 +27,6 @@ return {
     {
         "saghen/blink.cmp",
         version = "1.*", -- stable, pre-built binary
-        event = "InsertEnter",
         dependencies = {
             "L3MON4D3/LuaSnip",            -- snippet engine
             "rafamadriz/friendly-snippets" -- large collection of ready-to-use snippets
@@ -35,10 +34,9 @@ return {
         opts = {
             -- Custom keymap: Enter to accept, Up/Down to select, C-Space to trigger, C-f/C-b for snippet jump
             keymap = {
-                ["<CR>"]      = { "accept" },
+                ["<CR>"]      = { "accept", "fallback" },
                 ["<Up>"]      = { "select_prev", "fallback" },
                 ["<Down>"]    = { "select_next", "fallback" },
-                ["<C-Space>"] = { "complete" },
                 ["<C-f>"]     = { "snippet_forward", "fallback" },
                 ["<C-b>"]     = { "snippet_backward", "fallback" },
             },
@@ -46,7 +44,6 @@ return {
             appearance = {
                 nerd_font_variant = "mono", -- for best icon alignment with Nerd Font Mono
             },
-
             -- Always show documentation for the currently selected completion item
             completion = {
                 documentation = { auto_show = true }
@@ -67,26 +64,26 @@ return {
     },
 
 
-    { -- TODO: add a vsplit and hsplit option for these (might be in keymaps)
+    {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
         build = ":TSUpdate",
+        lazy = false,
         opts = {
-            -- A list of parser names, or "all" (the five listed parsers should always be installed)
+            -- These options are still valid for parser management
             ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "tsx", "python", "rust" },
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
-
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
             auto_install = true,
-
-
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-        }
+        },
+        config = function(_, opts)
+            require("nvim-treesitter").setup(opts)
+            -- Always enable Tree-sitter highlighting for every buffer
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    pcall(vim.treesitter.start)
+                end,
+            })
+        end,
     },
 
     -- Debugging
