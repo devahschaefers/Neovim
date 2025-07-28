@@ -25,14 +25,12 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevelstart = 99
 
 --clipboard
--- Set clipboard option to include unnamedplus
 vim.opt.clipboard = "unnamedplus"
 
 --diagnostics
 vim.diagnostic.config({
-    virtual_text = {
-        show = true,
-    },
+    virtual_lines = true, -- give errors as lines below
+    -- virtual_text = true, -- give errors as inlined on the line with the error
     signs = true,
     underline = true,
 })
