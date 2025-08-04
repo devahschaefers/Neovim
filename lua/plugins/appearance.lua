@@ -60,20 +60,21 @@ return {
         "RRethy/vim-illuminate"
     },
 
-    {
-        'Mofiqul/dracula.nvim',
-        opts = {
-            transparent_bg = true,
-        },
-        -- config = function (_, opts)
-        --     require("dracula").setup(opts)
-        --     vim.cmd.colorscheme("dracula-soft")
-        -- end
-    },
+    -- {
+    --     'Mofiqul/dracula.nvim',
+    --     opts = {
+    --         transparent_bg = true,
+    --     },
+    --     config = function (_, opts)
+    --         require("dracula").setup(opts)
+    --         vim.cmd.colorscheme("dracula-soft")
+    --     end
+    -- },
     {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
+        flavour = "auto",
         opts = {
             transparent_background = true,
             integrations = {
@@ -90,11 +91,11 @@ return {
                 },
             },
             color_overrides = {
-                mocha = {
+                 macchiato = {
                     -- Punch up the background and accents for more contrast
-                    base    = "#181825",
-                    mantle  = "#161622",
-                    crust   = "#11111b",
+                    -- base    = "#181825",
+                    -- mantle  = "#161622",
+                    -- crust   = "#11111b",
                     surface0 = "#313244",
                     surface1 = "#45475a",
                     text    = "#ffffff",
@@ -139,19 +140,41 @@ return {
                     LineNr = { fg = colors.overlay1 },
                     CursorLineNr = { fg = colors.yellow, style = { "bold" } },
                     Visual = { bg = colors.surface1 },
-                    Pmenu = { bg = colors.mantle },
-                    PmenuSel = { bg = colors.surface0, fg = colors.text },
+                    -- these get overriden by the transperency stuff later
+                    -- Pmenu = { bg = colors.mantle },
+                    -- PmenuSel = { bg = colors.surface0, fg = colors.text },
                     -- Diagnostic colors
                     DiagnosticError = { fg = colors.red },
                     DiagnosticWarn = { fg = colors.peach },
                     DiagnosticInfo = { fg = colors.blue },
                     DiagnosticHint = { fg = colors.teal },
+
+                    -- transperency stuff
+                    -- Hover/documentation windows - fully solid
+                    NormalFloat = { bg = colors.base, fg = colors.text },
+                    FloatBorder = { bg = colors.base, fg = colors.blue },
+
+                    -- Completion menu - fully solid
+                    Pmenu = { bg = colors.base, fg = colors.text },
+                    PmenuSel = { bg = colors.surface0, fg = colors.text },
+                    PmenuBorder = { bg = colors.base, fg = colors.blue },
+
+                    -- Scrollbar in completion - fully solid
+                    PmenuSbar = { bg = colors.surface1 },
+                    PmenuThumb = { bg = colors.overlay0 },
+
+
+                    -- Telescope
+                    TelescopeNormal = {}, -- This effectively makes its background transparent
+                    TelescopeBorder = {},      -- ToggleTerm - Fully Solid
+
                 }
             end,
+            
         },
         config = function (_, opts)
             require("catppuccin").setup(opts)
-            vim.cmd.colorscheme("catppuccin")
+            vim.cmd.colorscheme("catppuccin-macchiato")
         end
     },
 }

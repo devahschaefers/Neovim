@@ -38,8 +38,24 @@ return {
         'akinsho/toggleterm.nvim',
         version = "*",
         config = function ()
-            require("toggleterm").setup()
-            vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>ToggleTerm direction=float<CR>', { noremap = true, silent = true }) -- TODO: this overrides the switching panes hotkey
+            local function get_toggleterm_highlights()
+                local colors = require("catppuccin.palettes").get_palette()
+                return {
+                    Normal = { guibg = colors.base },
+                    NormalFloat = { guibg = colors.base },
+                    FloatBorder = {
+                        guifg = colors.base,
+                        guibg = colors.base
+                    },
+
+                }
+            end
+            require("toggleterm").setup({
+                shade_terminals = false, -- Disable automatic shading
+                highlights = get_toggleterm_highlights(),
+                vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>ToggleTerm direction=float<CR>', { noremap = true, silent = true }) -- TODO: this overrides the switching panes hotkey
+
+            })
         end,
     },
 

@@ -17,3 +17,5 @@ vim.keymap.set("n", "<leader>fe", ":NvimTreeToggle<CR>")
 --visual mode end of line
 vim.keymap.set("v", "j", "j$")
 vim.keymap.set("v", "k", "k$")
+vim.keymap.set("v", "G", "G$")
+vim.keymap.set("v", "gg", "gg$")
