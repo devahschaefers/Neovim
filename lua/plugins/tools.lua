@@ -1,6 +1,18 @@
 return {
     {
-        "github/copilot.vim"
+        "github/copilot.vim",
+        config = function()
+            -- Disable default <Tab> mapping
+            vim.g.copilot_no_tab_map = true
+
+            -- Map Ctrl+Enter to accept Copilot suggestion
+            vim.api.nvim_set_keymap(
+                "i",
+                "<C-CR>",
+                'copilot#Accept("<CR>")',
+                { silent = true, expr = true, script = true }
+            )
+        end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -73,6 +85,21 @@ return {
     },
 
     {
-        'christoomey/vim-tmux-navigator'
-    },
+        "christoomey/vim-tmux-navigator",
+        cmd = {
+            "TmuxNavigateLeft",
+            "TmuxNavigateDown",
+            "TmuxNavigateUp",
+            "TmuxNavigateRight",
+            "TmuxNavigatePrevious",
+            "TmuxNavigatorProcessList",
+        },
+        keys = {
+            { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+            { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+            { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+            { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+            { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+        },
+    }
 }
