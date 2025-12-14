@@ -36,3 +36,5 @@ fix telescope (doesnt seem to work with .gitignore maybe other hidden files too)
  - this issue of hidden files also happens in nvim-tree making it hard to access hidden files
 
 dont gray out text that is not used in a file, its annyoing when you are writing code that will have a use later but not now and you lose all syntax highlighting
+
+Make formating in rust work better so when writing chained methods on multiple files they line up nicely (maybe a formater works here and need to integrate with = command)

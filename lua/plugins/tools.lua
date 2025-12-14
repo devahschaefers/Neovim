@@ -65,6 +65,7 @@ return {
             require("toggleterm").setup({
                 shade_terminals = false, -- Disable automatic shading
                 highlights = get_toggleterm_highlights(),
+                -- TODO: is this the best way to call ToggleTerm or can we do thru lua code?
                 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>ToggleTerm direction=float<CR>', { noremap = true, silent = true }) -- TODO: this overrides the switching panes hotkey
 
             })

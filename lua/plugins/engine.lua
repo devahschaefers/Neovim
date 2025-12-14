@@ -4,23 +4,17 @@ return {
     -- LSP
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {
-            automatic_enable = {
-                exclude = {
-                    "rust_analyzer",
-                }
-            }
-        },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
         },
-    },
-
-    {
-        'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
-        ft = { 'rust' },
+        opts = {
+            -- Automatically install LSP servers you try to use
+            automatic_installation = true,
+            automatic_enable = true,
+            -- Optionally pin a few you always want around
+            ensure_installed = { "lua_ls", "rust_analyzer", "pyright" },
+        },
     },
 
     -- autocompletions (for now)
@@ -127,6 +121,7 @@ return {
             end
 
             -- Keybindings
+            -- TODO: adjust the map here to call lua code and not this 
             vim.keymap.set("n", "<leader>b", ":DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
         end,
     },

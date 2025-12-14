@@ -1,5 +1,4 @@
---hybrid line numbers
-vim.opt.number = true
+--hybrid line numbers vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.tabstop=4
@@ -35,3 +34,7 @@ vim.diagnostic.config({
     signs = true,
     underline = true,
 })
+
+-- Dont gray out unused code 
+vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = nil })
+

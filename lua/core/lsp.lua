@@ -10,6 +10,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gi',  vim.lsp.buf.implementation)
     map('gr',  vim.lsp.buf.references)
     map('K',   vim.lsp.buf.hover)
+    local buffer = ev.buf
+    -- -- enable inlay hints if supported
+    -- local inlay = vim.lsp.inlay_hint.enable(true, {bufnr = buffer})
+    -- -- keybind to toggle inlay hints
+    map('<leader>lth', function()
+      -- second arg is the buffer, 0 means current buffer
+      vim.lsp.inlay_hint.enable( not vim.lsp.inlay_hint.is_enabled(), 0)
+    end
+    )
   end,
 })
 
