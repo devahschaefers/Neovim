@@ -36,5 +36,11 @@ vim.diagnostic.config({
 })
 
 -- Dont gray out unused code 
+-- Why?: Will often write alot of modules before they are called from the main thread
+--       Most strict linting rules would consider that "unused code" which is annoying
+--       It will also prevent those areas from being linted or have any lsp features
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = nil })
 
+
+-- turn off line wrap
+vim.opt.wrap = false
